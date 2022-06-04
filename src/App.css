@@ -1,0 +1,24 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* overflow: hidden; */
+}
+
+html,
+body {
+  height: 100%;
+  background-color: #eee;
+}
+
+.left {
+  height: 98vh;
+  margin: 10px 0 0 15px !important;
+  border: 1px solid black;
+}
+
+.right {
+  height: 98vh;
+  margin: 10px 0 0 15px !important;
+  border: 1px solid red;
+}
