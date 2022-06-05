@@ -11,8 +11,19 @@ export default () => {
         </Avatar>
       </div>
       <div className="username">username</div>
-      <div className="tag">tag</div>
-      <div className="introduce">introduce</div>
+      <div className="tag">
+        <span>JavaScript</span>
+        <span>TypeScript</span>
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>React</span>
+        <span>frontend</span>
+        <span>backend</span>
+        <span>fullstack</span>
+      </div>
+      <div className="introduce">
+        test...test...test...test...test...test...
+      </div>
     </div>
   );
 };

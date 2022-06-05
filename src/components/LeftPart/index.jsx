@@ -4,10 +4,10 @@ import "./index.css";
 export default () => {
   return (
     <div className="leftpart">
-      <div className="flex11">
+      <div className="flex7">
         <UserProfile></UserProfile>
       </div>
-      <div className="flex18">body func</div>
+      <div className="flex22">body func</div>
       <div className="flex1">footer</div>
     </div>
   );
