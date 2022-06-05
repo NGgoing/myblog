@@ -16,3 +16,7 @@
 .flex22 {
   flex: 22 22 auto;
 }
+
+.border {
+  border: 1px solid black;
+}

@@ -6,9 +6,12 @@ import "./App.css";
 function App() {
   return (
     <Grid className="myapp" container>
+      {/* the left one fourth part */}
       <Grid className="left" item xs={1} sm={1} md={2} lg={2} xl={2}>
-        <LeftPart></LeftPart>
+        <LeftPart />
       </Grid>
+
+      {/* the right three fourth part */}
       <Grid
         className="right"
         item
@@ -18,7 +21,7 @@ function App() {
         lg={9.5}
         xl={9.5}
       >
-        <RightPart></RightPart>
+        <RightPart />
       </Grid>
     </Grid>
   );
