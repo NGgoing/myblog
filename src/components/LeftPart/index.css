@@ -5,6 +5,23 @@
   flex-direction: column;
 }
 
+.userprofile {
+  min-height: 320px;
+  max-height: 350px;
+}
+
+.tabs {
+  min-height: 300px;
+  max-height: 450px;
+}
+
+.footer {
+  text-align: center;
+  color: lightslategray;
+  font-size: smaller;
+  font-weight: 400;
+}
+
 .flex1 {
   flex: 1 1 auto;
 }
