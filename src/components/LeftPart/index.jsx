@@ -1,4 +1,5 @@
 import UserProfile from "./UserProfile";
+import LoginRegister from "./Login&Register";
 import MyTabs from "./Tabs";
 import Footer from "./Footer";
 import "./index.css";
@@ -8,7 +9,8 @@ export default () => {
     <div className="leftpart">
       {/* the UserProfile part */}
       <div className="flex7 userprofile">
-        <UserProfile />
+        {/* <UserProfile /> */}
+        <LoginRegister />
       </div>
       {/* the vertical tabs part */}
       <div className="flex22 tabs">

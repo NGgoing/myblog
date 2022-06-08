@@ -1,30 +1,27 @@
-import { Grid, Paper } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { Routes, Route, Outlet } from "react-router-dom";
-import Home from "./Home";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import { Grid } from "@mui/material";
+import Search from "./Search";
+import Pagination from "./Pagination";
+import ArticleBox from "./ArticleBox";
+import "./index.css";
 
 export default () => {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={8}>
-        <Outlet />
+    <Grid container direction="column" className="border rightpartContainer">
+      <Grid item xs={1} className="search">
+        <Search />
       </Grid>
-      <Grid item xs={4}>
-        <Item>xs=4</Item>
+      <Grid item xs={10} className="displayArea">
+        <ArticleBox className="item" />
+        <ArticleBox className="item" />
+        <ArticleBox className="item" />
+        <ArticleBox className="item" />
+        <ArticleBox className="item" />
+        <ArticleBox className="item" />
+        <ArticleBox className="item" />
+        <ArticleBox className="item" />
       </Grid>
-      <Grid item xs={4}>
-        <Item>xs=4</Item>
-      </Grid>
-      <Grid item xs={8}>
-        <Outlet />
+      <Grid item xs={1}>
+        <Pagination />
       </Grid>
     </Grid>
   );

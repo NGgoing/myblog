@@ -11,7 +11,6 @@
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 0 20px 0 20px;
   box-shadow: 0.5px 0.5px 10px 1px rgba(0, 0, 0, 0.1);
-  transition: zoom 1s linear;
 }
 
 .avatar {
@@ -34,6 +33,7 @@
   flex: auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   align-items: flex-start;
 }
 

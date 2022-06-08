@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { useState } from "react";
+import "./index.css";
 
 export default () => {
   const [value, setValue] = useState(0);
@@ -19,6 +20,7 @@ export default () => {
         onChange={tabsChangeHandler}
         variant="scrollable"
         allowScrollButtonsMobile
+        className="tabs"
       >
         <Tab label={<NavLink to="home">home</NavLink>} />
         <Tab label={<NavLink to="dashboard">dashboard</NavLink>} />
