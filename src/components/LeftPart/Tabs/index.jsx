@@ -22,21 +22,98 @@ export default () => {
         allowScrollButtonsMobile
         className="tabs"
       >
-        <Tab label={<NavLink to="home">home</NavLink>} />
-        <Tab label={<NavLink to="dashboard">dashboard</NavLink>} />
-        <Tab label={<NavLink to="management">management</NavLink>} />
-        <Tab label={<NavLink to="extend">extend</NavLink>} />
-        <Tab label={<NavLink to="extend">extend</NavLink>} />
-        <Tab label={<NavLink to="extend">extend</NavLink>} />
-        <Tab label={<NavLink to="extend">extend</NavLink>} />
-        <Tab label={<NavLink to="extend">extend</NavLink>} />
-        <Tab label={<NavLink to="extend">extend</NavLink>} />
-        <Tab label={<NavLink to="extend">extend</NavLink>} />
-        <Tab label={<NavLink to="extend">extend</NavLink>} />
-        <Tab label={<NavLink to="extend">extend</NavLink>} />
-        <Tab label={<NavLink to="extend">extend</NavLink>} />
-        <Tab label={<NavLink to="extend">extend</NavLink>} />
-        <Tab label={<NavLink to="home">home</NavLink>} />
+        <Tab
+          label={
+            <NavLink className="tab" to="home">
+              home
+            </NavLink>
+          }
+        />
+        <Tab
+          label={
+            <NavLink className="tab" to="dashboard">
+              dashboard
+            </NavLink>
+          }
+        />
+        <Tab
+          label={
+            <NavLink className="tab" to="management">
+              management
+            </NavLink>
+          }
+        />
+        <Tab
+          label={
+            <NavLink className="tab" to="extend">
+              extend
+            </NavLink>
+          }
+        />
+        <Tab
+          label={
+            <NavLink className="tab" to="extend">
+              extend
+            </NavLink>
+          }
+        />
+        <Tab
+          label={
+            <NavLink className="tab" to="extend">
+              extend
+            </NavLink>
+          }
+        />
+        <Tab
+          label={
+            <NavLink className="tab" to="extend">
+              extend
+            </NavLink>
+          }
+        />
+        <Tab
+          label={
+            <NavLink className="tab" to="extend">
+              extend
+            </NavLink>
+          }
+        />
+        <Tab
+          label={
+            <NavLink className="tab" to="extend">
+              extend
+            </NavLink>
+          }
+        />
+        <Tab
+          label={
+            <NavLink className="tab" to="extend">
+              extend
+            </NavLink>
+          }
+        />
+        <Tab
+          label={
+            <NavLink className="tab" to="extend">
+              extend
+            </NavLink>
+          }
+        />
+        <Tab
+          label={
+            <NavLink className="tab" to="extend">
+              extend
+            </NavLink>
+          }
+        />
+
+        <Tab
+          label={
+            <NavLink className="tab" to="home">
+              home
+            </NavLink>
+          }
+        />
       </Tabs>
     </div>
   );

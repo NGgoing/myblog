@@ -7,8 +7,11 @@ export default () => {
     <div className="userProfile">
       {/* the avatar part */}
       <div className="avatar">
-        <Avatar alt="missing" sx={{ width: 128, height: 128 }}>
-          <PersonOutline sx={{ fontSize: 128 }} color="disabled" />
+        <Avatar alt="missing" sx={{ width: "100%", height: "100%" }}>
+          <PersonOutline
+            sx={{ width: "100%", height: "100%" }}
+            color="disabled"
+          />
         </Avatar>
       </div>
       {/* the username part */}
@@ -23,10 +26,11 @@ export default () => {
         <span>frontend</span>
         <span>backend</span>
         <span>fullstack</span>
+        <span>Java</span>
       </div>
       {/* the intro part */}
       <div className="introduce">
-        test...test...test...test...test...test...
+        test...test...test...test...test...test...test...test...test...test...
       </div>
     </div>
   );

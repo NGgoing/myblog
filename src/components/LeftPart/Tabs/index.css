@@ -1,4 +1,21 @@
 .tabs {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+}
+
+.tabs * {
+  padding-right: 0 !important;
+  align-items: flex-end;
+}
+
+.tab {
+  text-decoration: none;
+  color: black;
+  font-weight: 900;
+  font-size: large;
+  font-family: Times, "Times New Roman", Georgia, serif;
+}
+
+.tab:hover {
+  font-size: x-large;
 }

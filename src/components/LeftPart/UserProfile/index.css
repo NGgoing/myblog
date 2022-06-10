@@ -17,16 +17,19 @@
   flex: 1 1 auto;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 0 10px;
 }
 
 .username {
-  flex: 1 1 auto;
+  flex: auto;
   color: rgb(60, 60, 60);
   font-size: x-large;
   font-family: Georgia, serif, cursive;
-  font-weight: 800;
+  font-weight: 900;
   line-height: 100%;
   overflow-wrap: break-word;
+  margin: 10px 0;
 }
 
 .tag {
@@ -35,6 +38,8 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+  padding: 1px;
+  padding-bottom: 4px;
 }
 
 .tag > span {
@@ -43,6 +48,10 @@
   margin: 1px;
   border: 1px dotted gray;
   background-color: rgba(200, 200, 200, 0.2);
+  cursor: pointer;
+}
+.tag > span:hover {
+  background-color: rgba(200, 200, 200, 0.8);
 }
 
 .introduce {
@@ -51,4 +60,5 @@
   font-size: small;
   padding: 1px;
   overflow-wrap: break-word;
+  margin-top: 10px;
 }

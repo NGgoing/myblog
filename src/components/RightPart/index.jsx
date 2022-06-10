@@ -20,7 +20,7 @@ export default () => {
         <ArticleBox className="item" />
         <ArticleBox className="item" />
       </Grid>
-      <Grid item xs={1}>
+      <Grid item xs={1} className="pagination">
         <Pagination />
       </Grid>
     </Grid>

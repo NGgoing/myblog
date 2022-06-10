@@ -7,17 +7,17 @@ import "./index.css";
 export default () => {
   return (
     <div className="leftpart">
-      {/* the UserProfile part */}
+      {/* the UserProfile or Login/Register part */}
       <div className="flex7 userprofile">
-        {/* <UserProfile /> */}
-        <LoginRegister />
+        <UserProfile />
+        {/* <LoginRegister /> */}
       </div>
       {/* the vertical tabs part */}
-      <div className="flex22 tabs">
+      <div className="flex22 tabs border">
         <MyTabs />
       </div>
       {/* the footer that can show some website info  */}
-      <div className="flex1 footer">
+      <div className="flex1 footer border">
         <Footer />
       </div>
     </div>
