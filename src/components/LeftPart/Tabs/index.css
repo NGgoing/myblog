@@ -6,6 +6,34 @@
 .tabs * {
   padding-right: 0 !important;
   align-items: flex-end;
+  display: inline;
+}
+
+.tabs div div div + span {
+  width: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  background-color: transparent;
+}
+
+.tabs div div div + span::after {
+  content: "✔";
+  color: brown;
+}
+.Mui-selected {
+  color: brown !important;
+}
+
+.tabs div div div a::after {
+  content: "";
+  margin-left: 24px;
+}
+
+.active {
+  color: brown !important;
 }
 
 .tab {
@@ -13,9 +41,10 @@
   color: black;
   font-weight: 900;
   font-size: large;
+  line-height: x-large;
   font-family: Times, "Times New Roman", Georgia, serif;
 }
 
 .tab:hover {
-  font-size: x-large;
+  color: brown;
 }

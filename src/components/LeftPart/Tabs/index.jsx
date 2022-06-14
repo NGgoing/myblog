@@ -1,25 +1,30 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { useState } from "react";
 import "./index.css";
 
+/**
+ * the tabs in the left part
+ */
 export default () => {
+  // it controls which tab is selected, default to 0 (first tab)
   const [value, setValue] = useState(0);
 
+  /**
+   * set new value to the state when the selected tab is changed
+   */
   const tabsChangeHandler = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <div>
-      {/* unsolved: tabs can't scroll */}
+    <>
       <Tabs
         orientation="vertical"
         value={value}
         onChange={tabsChangeHandler}
         variant="scrollable"
-        allowScrollButtonsMobile
         className="tabs"
       >
         <Tab
@@ -28,6 +33,7 @@ export default () => {
               home
             </NavLink>
           }
+          disableRipple
         />
         <Tab
           label={
@@ -35,6 +41,7 @@ export default () => {
               dashboard
             </NavLink>
           }
+          disableRipple
         />
         <Tab
           label={
@@ -42,6 +49,7 @@ export default () => {
               management
             </NavLink>
           }
+          disableRipple
         />
         <Tab
           label={
@@ -49,72 +57,9 @@ export default () => {
               extend
             </NavLink>
           }
-        />
-        <Tab
-          label={
-            <NavLink className="tab" to="extend">
-              extend
-            </NavLink>
-          }
-        />
-        <Tab
-          label={
-            <NavLink className="tab" to="extend">
-              extend
-            </NavLink>
-          }
-        />
-        <Tab
-          label={
-            <NavLink className="tab" to="extend">
-              extend
-            </NavLink>
-          }
-        />
-        <Tab
-          label={
-            <NavLink className="tab" to="extend">
-              extend
-            </NavLink>
-          }
-        />
-        <Tab
-          label={
-            <NavLink className="tab" to="extend">
-              extend
-            </NavLink>
-          }
-        />
-        <Tab
-          label={
-            <NavLink className="tab" to="extend">
-              extend
-            </NavLink>
-          }
-        />
-        <Tab
-          label={
-            <NavLink className="tab" to="extend">
-              extend
-            </NavLink>
-          }
-        />
-        <Tab
-          label={
-            <NavLink className="tab" to="extend">
-              extend
-            </NavLink>
-          }
-        />
-
-        <Tab
-          label={
-            <NavLink className="tab" to="home">
-              home
-            </NavLink>
-          }
+          disableRipple
         />
       </Tabs>
-    </div>
+    </>
   );
 };

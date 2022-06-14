@@ -13,7 +13,7 @@ export default () => {
         {/* <LoginRegister /> */}
       </div>
       {/* the vertical tabs part */}
-      <div className="flex22 tabs border">
+      <div className="flex22 tabs">
         <MyTabs />
       </div>
       {/* the footer that can show some website info  */}
