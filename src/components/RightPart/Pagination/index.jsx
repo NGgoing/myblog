@@ -4,7 +4,13 @@ import Stack from "@mui/material/Stack";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-export default () => {
+export default (props) => {
+  const { pagHandler, count } = props;
+
+  const tabChangedHandler = (event, page) => {
+    pagHandler(page);
+  };
+
   return (
     <Stack
       spacing={2}
@@ -13,8 +19,9 @@ export default () => {
       }}
     >
       <Pagination
-        count={10}
+        count={count}
         size="large"
+        onChange={tabChangedHandler}
         renderItem={(item) => (
           <PaginationItem
             components={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
