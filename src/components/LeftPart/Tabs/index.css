@@ -9,6 +9,7 @@
   display: inline;
 }
 
+/* customize the indicator's shape */
 .tabs div div div + span {
   width: 50px;
   display: flex;
@@ -18,20 +19,21 @@
   right: 0;
   background-color: transparent;
 }
-
 .tabs div div div + span::after {
   content: "✔";
   color: brown;
 }
-.Mui-selected {
-  color: brown !important;
-}
 
+/* make the tab move a little to the left */
 .tabs div div div a::after {
   content: "";
   margin-left: 24px;
 }
 
+/* change the selected tab's color */
+.Mui-selected {
+  color: brown !important;
+}
 .active {
   color: brown !important;
 }

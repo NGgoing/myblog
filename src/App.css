@@ -15,6 +15,11 @@ body {
 /* App css */
 .myapp {
   justify-content: center;
+  min-width: 400px;
+}
+
+.top {
+  display: none;
 }
 
 .left {
@@ -25,4 +30,14 @@ body {
 .right {
   height: 98vh;
   margin-top: 10px !important;
+}
+
+/* hide the LeftPart and display the Top Part when the width of devices lower than 768px */
+@media screen and (max-width: 768px) {
+  .top {
+    display: block;
+  }
+  .left {
+    display: none;
+  }
 }

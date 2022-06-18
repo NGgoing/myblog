@@ -9,15 +9,15 @@ export default () => {
     <div className="leftpart">
       {/* the UserProfile or Login/Register part */}
       <div className="flex7 userprofile">
-        <UserProfile />
-        {/* <LoginRegister /> */}
+        {/* <UserProfile /> */}
+        <LoginRegister />
       </div>
       {/* the vertical tabs part */}
       <div className="flex22 tabs">
         <MyTabs />
       </div>
       {/* the footer that can show some website info  */}
-      <div className="flex1 footer border">
+      <div className="flex1 footer">
         <Footer />
       </div>
     </div>

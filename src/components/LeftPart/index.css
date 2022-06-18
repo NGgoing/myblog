@@ -35,6 +35,10 @@
   flex: 22 22 auto;
 }
 
+.flexAuto {
+  flex: auto;
+}
+
 .border {
   border: 1px solid black;
 }
