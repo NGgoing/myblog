@@ -1,3 +1,4 @@
+/* container css */
 .loginRegister {
   width: 98%;
   height: 96%;
@@ -10,4 +11,27 @@
   border-radius: 0 20px 0 20px;
   box-shadow: 0.5px 0.5px 10px 1px rgba(0, 0, 0, 0.1);
   border: 1px dotted rgba(128, 128, 128, 0.3);
+}
+
+/* modal box css */
+.modalBox {
+  min-width: 400px;
+  background-color: #eee;
+  box-shadow: 24px;
+  padding: 10px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: MoveDown 300ms forwards;
+}
+
+/* modal box animation */
+@keyframes MoveDown {
+  from {
+    transform: translate(-50%, -250%);
+  }
+  to {
+    transform: translate(-50%, -50%);
+  }
 }
