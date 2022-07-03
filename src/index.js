@@ -10,18 +10,18 @@ import Editor from "./components/RightPart/Editor";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  // <React.StrictMode>
   <BrowserRouter>
-    <React.StrictMode>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/management" element={<Management />} />
-          <Route path="/extend" element={<Extend />} />
-          <Route path="/editor" element={<Editor />} />
-          <Route path="/" element={<Navigate to="/home" />} />
-        </Route>
-      </Routes>
-    </React.StrictMode>
+    <Routes>
+      <Route path="/" element={<App />}>
+        <Route path="/home" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/management" element={<Management />} />
+        <Route path="/extend" element={<Extend />} />
+        <Route path="/editor" element={<Editor />} />
+        <Route path="/" element={<Navigate to="/home" />} />
+      </Route>
+    </Routes>
   </BrowserRouter>
+  // </React.StrictMode>
 );
