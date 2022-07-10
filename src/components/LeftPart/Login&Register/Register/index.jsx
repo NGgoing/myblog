@@ -20,6 +20,8 @@ import Button from "@mui/material/Button";
 /**
  * Register Modal;
  * css file is in the parent folder index.css, children share the css if they need a public layout
+ *
+ * TODO -- user can register unlimitly - unsolved
  */
 export default (props) => {
   const { isShow, setIsShow, isLoginHandler, isValidHandler } = props;
@@ -27,6 +29,7 @@ export default (props) => {
   const [showPassword, setShowPassword] = useState(false); //control the password iconButton's display
   const [errorText, setErrorText] = useState({}); //save the error message
   const navigate = useNavigate(); // redirect hook
+  const regUsername = /^[0-9A-Za-z]+$/; // regular expression to test username
   const regPassword1 = /[0-9]/; // regular expression to test password
   const regPassword2 = /[A-Z]/; // regular expression to test password
   const regPassword3 = /[a-z]/; // regular expression to test password
@@ -78,14 +81,18 @@ export default (props) => {
    * @param {*} event
    */
   const usernameHandler = (event) => {
+    const { value } = event.target;
     //set the error message and data if input noting, otherwise save
-    if (event.target.value === "") {
-      setErrorText({ ...errorText, username: "Username is required" });
+    if (regUsername.test(value)) {
+      setErrorText({
+        ...errorText,
+        username: "Username is required and don't use special charater",
+      });
       setData({ ...data, username: "" });
       return;
     }
     setErrorText({ ...errorText, username: "" });
-    setData({ ...data, username: event.target.value });
+    setData({ ...data, username: value });
   };
 
   /**

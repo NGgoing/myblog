@@ -1,27 +1,35 @@
+import { OptionUnstyled } from "@mui/base";
 import React, { useState, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import Vditor from "vditor";
 import "vditor/dist/index.css";
 
 // rich editor
 export default () => {
   const [vd, setVd] = useState(); //save the instance of Vditor
+  const [count, setCount] = useState(0); //save the counter
 
   useEffect(() => {
     /**
      * @see https://github.com/Vanessa219/vditor for more details
      */
     const vditor = new Vditor("vditor", {
+      value: "",
       after: () => {
         setVd(vditor);
+        localStorage.setItem("mdhtml", vditor.getValue());
       },
       height: "100%",
       width: "100%",
       counter: {
         enable: true,
         type: "text",
+        after: (length, counter) => {
+          setCount(length);
+        },
       },
       cache: {
-        enable: false,
+        enable: true,
       },
       tab: "\t",
 
@@ -55,10 +63,15 @@ export default () => {
         position: "right",
       },
       input: (str) => {
-        //todo: handler the data
-        console.log(str);
+        //todo: handler the text
       },
     });
   }, []);
-  return <div id="vditor" className="vditor" />;
+
+  return (
+    <>
+      <div id="vditor" className="vditor" />
+      <Outlet context={{ count }} />
+    </>
+  );
 };

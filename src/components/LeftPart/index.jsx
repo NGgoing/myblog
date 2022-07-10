@@ -8,6 +8,8 @@ import "./index.css";
 
 /**
  * Left Part
+ *
+ * TODO -- add a skeleton between the transition LoginRegister and UserProfile - unsolved
  */
 export default () => {
   const [userinfo, setUserinfo] = useState({}); // save user infomation

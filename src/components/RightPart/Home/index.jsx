@@ -3,6 +3,9 @@ import { Grid } from "@mui/material";
 import Search from "../Search";
 import Pagination from "../Pagination";
 import myPagination from "../Pagination/myPagination";
+import ArticleBox from "../ArticleBox";
+import { getAllArticle } from "../../../config/sendRequest";
+import articleData from "../../../config/articleData";
 import "./index.css";
 
 export default () => {
@@ -24,7 +27,7 @@ export default () => {
         <Search />
       </Grid>
       <Grid item xs={10} className="displayArea">
-        {data}
+        {articleData.map((item) => item)}
       </Grid>
       <Grid item xs={1} className="pagination">
         <Pagination count={count} pagHandler={pagHandler} />

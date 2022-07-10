@@ -39,16 +39,14 @@ export default (props) => {
     });
 
     //remove the mousemove eventListener when mouse up
-    document.addEventListener("mouseup", () => {
+    document.addEventListener("mouseup", (event) => {
       document.removeEventListener("mousemove", mousemoveHandler);
     });
   }, []);
 
   return (
     <div id="container">
-      <Fab color="primary" color={color}>
-        {children}
-      </Fab>
+      <Fab color={color}>{children}</Fab>
     </div>
   );
 };

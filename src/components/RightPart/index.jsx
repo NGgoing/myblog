@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import MyFab from "./MyFab";
+import Tooltip from "@mui/material/Tooltip";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 
@@ -25,8 +26,20 @@ export default () => {
 
       {/* my Fab button */}
       <MyFab color={isEditor ? "error" : "secondary"}>
-        <Link to="editor" style={{ color: "white" }} draggable="false">
-          {isEditor ? <SaveIcon /> : <EditIcon />}
+        <Link
+          to={isEditor ? "editor/save" : "editor"}
+          style={{ color: "white" }}
+          draggable="false"
+        >
+          {isEditor ? (
+            <Tooltip title="save" placement="top">
+              <SaveIcon />
+            </Tooltip>
+          ) : (
+            <Tooltip title="edit" placement="top">
+              <EditIcon />
+            </Tooltip>
+          )}
         </Link>
       </MyFab>
     </>

@@ -7,6 +7,8 @@ import Dashboard from "./components/RightPart/Dashboard";
 import Management from "./components/RightPart/Management";
 import Extend from "./components/RightPart/Extend";
 import Editor from "./components/RightPart/Editor";
+import Save from "./components/RightPart/Editor/Save";
+import DetailedArticle from "./components/RightPart/DetailedArticle";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,7 +20,10 @@ root.render(
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/management" element={<Management />} />
         <Route path="/extend" element={<Extend />} />
-        <Route path="/editor" element={<Editor />} />
+        <Route path="/editor" element={<Editor />}>
+          <Route path="save" element={<Save />} />
+        </Route>
+        <Route path="/detailed/:aid" element={<DetailedArticle />} />
         <Route path="/" element={<Navigate to="/home" />} />
       </Route>
     </Routes>
