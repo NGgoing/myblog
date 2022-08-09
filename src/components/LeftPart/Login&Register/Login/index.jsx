@@ -61,33 +61,22 @@ export default (props) => {
   };
 
   /**
-   * get the values of username and check it null or not
-   * @param {*} event
+   * get the value of Form and check it matches the rule or not
+   * @param {String} dataType the name of data
+   * @returns
    */
-  const usernameHandler = (event) => {
-    //set the error message and data if input noting, otherwise save
-    if (event.target.value === "") {
-      setErrorText({ ...errorText, username: "Username is required" });
-      setData({ ...data, username: "" });
-      return;
-    }
-    setErrorText({ ...errorText, username: "" });
-    setData({ ...data, username: event.target.value });
-  };
-
-  /**
-   * get the value of password and check it matches the rule or not
-   * @param {*} event
-   */
-  const passwordHandler = (event) => {
-    //set the error message and data if input noting, otherwise save
-    if (event.target.value === "") {
-      setErrorText({ ...errorText, password: "Password is required" });
-      setData({ ...data, password: "" });
-      return;
-    }
-    setErrorText({ ...errorText, password: "" });
-    setData({ ...data, password: event.target.value });
+  const saveFormData = (dataType) => {
+    return (event) => {
+      const { value } = event.target;
+      //set the error message and data if input noting, otherwise save
+      if (value === "") {
+        setErrorText({ ...errorText, [dataType]: `${dataType} is required` });
+        setData({ ...data, [dataType]: "" });
+        return;
+      }
+      setErrorText({ ...errorText, [dataType]: "" });
+      setData({ ...data, [dataType]: value });
+    };
   };
 
   return (
@@ -108,7 +97,7 @@ export default (props) => {
               label="Username"
               variant="outlined"
               fullWidth
-              onBlur={usernameHandler}
+              onBlur={saveFormData("username")}
               error={errorText.username ? true : false}
               helperText={errorText.username ? errorText.username : null}
             />
@@ -121,7 +110,7 @@ export default (props) => {
               <OutlinedInput
                 id="passwordLabel"
                 type={showPassword ? "text" : "password"}
-                onBlur={passwordHandler}
+                onBlur={saveFormData("password")}
                 error={errorText.password ? true : false}
                 endAdornment={
                   <InputAdornment position="end">

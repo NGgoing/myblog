@@ -1,13 +1,13 @@
+import { Fragment } from "react";
 import { Grid } from "@mui/material";
 import LeftPart from "./components/LeftPart";
 import RightPart from "./components/RightPart";
 import AppBar from "./components/TopPart";
 import "./App.css";
-import { Fragment } from "react";
 
 function App() {
   return (
-    <>
+    <Fragment>
       {/* the Top Part */}
       <div className="top">
         <AppBar />
@@ -32,7 +32,7 @@ function App() {
           <RightPart />
         </Grid>
       </Grid>
-    </>
+    </Fragment>
   );
 }
 

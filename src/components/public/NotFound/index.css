@@ -1,0 +1,20 @@
+.notfound {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.notfound div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.notfound div * {
+  vertical-align: middle;
+}
+.notfound div span {
+  font-size: large;
+  font-weight: 700;
+}

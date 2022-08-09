@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useRoutes } from "react-router-dom";
 import MyFab from "./MyFab";
 import Tooltip from "@mui/material/Tooltip";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
+import routes from "../../config/routes";
 
 /**
  * the right part(about three fourth) of the page
@@ -14,6 +15,8 @@ export default () => {
   // todo:  how to detect pathname changed -- solved
   const { pathname } = useLocation(); //get the pathname from location
 
+  const route = useRoutes(routes);
+
   // set the value of 'isEditor' when pathname changed
   useEffect(() => {
     setIsEditor(pathname == "/editor");
@@ -22,6 +25,7 @@ export default () => {
   return (
     <>
       {/* put matching components here */}
+      {route}
       <Outlet />
 
       {/* my Fab button */}

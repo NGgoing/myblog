@@ -1,0 +1,32 @@
+.item {
+  max-width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+}
+
+.item a {
+  text-decoration: none;
+  transition: all 1s;
+}
+
+.item a:hover * {
+  background-color: #eee;
+}
+
+.item-title {
+  width: 100%;
+  font-size: x-large;
+  color: black;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.item-content {
+  max-width: 100%;
+  font-size: medium;
+  color: gray;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}

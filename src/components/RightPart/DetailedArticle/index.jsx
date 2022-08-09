@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { marked } from "marked";
 import { getSeletedArticle } from "../../../config/sendRequest";
+import calcToMins from "../../../utils/calcToMins";
 import MySkeleton from "../../public/MySkeleton";
 import PersonIcon from "@mui/icons-material/Person";
 import FunctionsIcon from "@mui/icons-material/Functions";
@@ -71,7 +72,7 @@ export default (props) => {
               </span>
               <span>
                 <AccessTimeIcon />
-                ?? mins
+                {calcToMins(data.count)}
               </span>
             </div>
             {/*  area to display article */}

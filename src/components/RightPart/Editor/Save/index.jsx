@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { getType, postItem } from "../../../../config/sendRequest";
-import encodeImageFileAsURL from "../../../../utils/dataURL";
+import encodeImageFileAsURL from "../../../../utils/dataToURL";
 import { postArticle } from "../../../../config/sendRequest";
 import MySnackBar from "../../../public/MySnackBar";
 import Box from "@mui/material/Box";

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
+import calcToMins from "../../../../utils/calcToMins";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardMedia from "@mui/material/CardMedia";
@@ -9,14 +10,15 @@ import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import FunctionsIcon from "@mui/icons-material/Functions";
 import PushPinIcon from "@mui/icons-material/PushPin";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import ChromeReaderModeIcon from "@mui/icons-material/ChromeReaderMode";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 /**
  * article box
  */
 export default (props) => {
-  const { aid, count, cover, introduction, is_pin, title, view } = props; // get article columns from parent
+  const { aid, count, cover, introduction, is_pin, title, view } = props; // get article columns from articleData.js
 
   const navigate = useNavigate(); // redirect
 
@@ -24,7 +26,14 @@ export default (props) => {
   const toDetailedArticle = () => navigate(`/detailed/${aid}`);
 
   return (
-    <Card sx={{ maxWidth: 245, minWidth: 200, m: 1, position: "relative" }}>
+    <Card
+      sx={{
+        maxWidth: 245,
+        minWidth: 200,
+        m: 1,
+        position: "relative",
+      }}
+    >
       {/* img part */}
       <CardMedia component="img" alt="not found" height="140" image={cover} />
 
@@ -37,6 +46,7 @@ export default (props) => {
           top: "40%",
         }}
       >
+        {/* Pin icon */}
         {is_pin === 1 && (
           <Tooltip
             title="Pined"
@@ -48,20 +58,26 @@ export default (props) => {
             <PushPinIcon />
           </Tooltip>
         )}
+
+        {/* view icon */}
         <Tooltip
           title={`${view} views`}
           sx={{ mr: 1, color: "rgba(180, 180, 180, 0.8)" }}
         >
           <VisibilityIcon />
         </Tooltip>
+
+        {/* count icon */}
         <Tooltip
           title={`${count} words`}
           sx={{ mr: 1, color: "rgba(180, 180, 180, 0.8)" }}
         >
           <FunctionsIcon />
         </Tooltip>
+
+        {/* spendTime icon */}
         <Tooltip
-          title={`not setted`}
+          title={`${calcToMins(count)}`}
           sx={{ mr: 1, color: "rgba(180, 180, 180, 0.8)" }}
         >
           <AccessTimeIcon />
