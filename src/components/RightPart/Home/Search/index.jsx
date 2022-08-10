@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
-import { isEmpty, isEqual } from "lodash";
+import { useEffect, useRef, useState } from "react";
+import { isEmpty } from "lodash";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
+import { getArticleByQueryString } from "../../../../config/sendRequest";
 import ListItem from "./ListItem";
 import NotFound from "../../../public/NotFound";
-import { getArticleByQueryString } from "../../../../config/sendRequest";
 import "./index.css";
 
 /**
@@ -14,6 +16,7 @@ import "./index.css";
 export default () => {
   const [data, setData] = useState([]); // save the data from request
   const [isFocus, setIsFocus] = useState(false); // detect the textfield is focused or not
+  const clearBtnRef = useRef(); // connect the textfield
 
   //add a listener to document to control the search list's display
   useEffect(() => {
@@ -41,6 +44,22 @@ export default () => {
     }
   };
 
+  //IconButton onClick Handler, clearing the input value
+  const clearTextHandler = () => (clearBtnRef.current.value = null);
+
+  //display the search list to the corresponding box
+  function showSearchList() {
+    return isFocus ? (
+      !isEmpty(data) ? (
+        data.map((item) => <ListItem key={item.aid} {...item} />)
+      ) : (
+        <div className="item" style={{ margin: "10px 20px" }}>
+          <NotFound />
+        </div>
+      )
+    ) : null;
+  }
+
   return (
     <div className="search-container">
       {/* search input */}
@@ -51,27 +70,20 @@ export default () => {
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <SearchIcon />
+              <IconButton onClick={clearTextHandler}>
+                {isFocus ? <CloseIcon /> : <SearchIcon />}
+              </IconButton>
             </InputAdornment>
           ),
         }}
         variant="outlined"
         onChange={onChangeHandler}
         onClick={onClickHandler}
+        inputRef={clearBtnRef}
       />
 
       {/* search result */}
-      <div className="result-list">
-        {isFocus ? (
-          !isEmpty(data) ? (
-            data.map((item) => <ListItem key={item.aid} {...item} />)
-          ) : (
-            <div className="item" style={{ margin: "10px 20px" }}>
-              <NotFound />
-            </div>
-          )
-        ) : null}
-      </div>
+      <div className="result-list">{showSearchList()}</div>
     </div>
   );
 };
