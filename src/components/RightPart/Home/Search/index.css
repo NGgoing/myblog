@@ -16,4 +16,13 @@
   border-radius: 2px;
   box-shadow: 0 10px 30px rgb(94, 93, 93);
   overflow: auto !important;
+
+  /* Hide scrollbar for IE, Edge add Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.result-list::-webkit-scrollbar {
+  display: none;
 }
