@@ -10,11 +10,28 @@ export function register(data) {
   return myAxios.post("/private/register", data);
 }
 
+// -------------------user----------------------------------------------
 //get current user info
 export function getCurrentUser(currUser) {
   return myAxios.get(`/private/getuser/${currUser}`);
 }
 
+//get all user info
+export function getAllUser() {
+  return myAxios.get(`/private/getAlluser`);
+}
+
+//change the user's status
+export function postStatus(status) {
+  return myAxios.post(`/private/postStatus`, status);
+}
+
+//reset account's password to 000000
+export function resetPassword(uid) {
+  return myAxios.post(`/private/resetPassword`, { uid, pwd: "000000" });
+}
+
+//-------------------------article----------------------------------------
 //get article type
 export function getType() {
   return myAxios.get("/getType");
@@ -45,6 +62,7 @@ export function getArticleByQueryString(qs) {
   return myAxios.get(`/public/getArticleByQueryString?qs=${qs}`);
 }
 
+//-----------------------------------test--------------------------------------
 //test token is valid or not
 export function testToken() {
   return myAxios.get(`/test`);

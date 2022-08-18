@@ -7,6 +7,7 @@ import Editor from "../components/RightPart/Editor";
 import Save from "../components/RightPart/Editor/Save";
 import DetailedArticle from "../components/RightPart/DetailedArticle";
 import NotFound from "../components/public/NotFound";
+import NotAuthorized from "../components/public/NotAuthorized";
 
 /**
  * routing table
@@ -24,7 +25,7 @@ export default [
         element: <Dashboard />,
       },
       {
-        path: "management",
+        path: "management/users",
         element: <Management />,
       },
       {
@@ -44,6 +45,10 @@ export default [
       {
         path: "detailed/:aid",
         element: <DetailedArticle />,
+      },
+      {
+        path: "notauthorized",
+        element: <NotAuthorized />,
       },
       {
         path: "/",

@@ -9,7 +9,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
 import PropTypes from "prop-types";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -18,7 +17,21 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import {
+  getAllUser,
+  postStatus,
+  resetPassword,
+} from "../../../../config/sendRequest";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Switch from "@mui/material/Switch";
+import Snackbar from "@mui/material/Snackbar";
+import Tooltip from "@mui/material/Tooltip";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+import { isEmpty } from "lodash";
+import { useNavigate } from "react-router-dom";
 
+// funtionality related to table pagination
 function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -88,16 +101,22 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
+// costomized cell style
+const StyledTableCell = styled(TableCell)(({ theme, width }) => {
+  return {
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+      whiteSpace: "nowrap",
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+      wordBreak: "break-word",
+    },
+  };
+});
 
+// customized row style
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
@@ -108,90 +127,171 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozena yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ices cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclaira", 262, 16.0, 24, 6.0),
-  createData("Cupcakea", 305, 3.7, 67, 4.3),
-  createData("Gingerbreada", 356, 16.0, 49, 3.9),
-  createData("Cupcake", 305, 3.7, 66, 66),
-  createData("Donut", 452, 25.0, 66, 66),
-  createData("Eclair", 262, 16.0, 66, 66),
-  createData("Frozen yoghurt", 159, 6.0, 66, 66),
-  createData("Gingerbread", 356, 16.0, 66, 66),
-  createData("Honeycomb", 408, 3.2, 66, 66),
-  createData("Ice cream sandwich", 237, 9.0, 66, 66),
-  createData("Jelly Bean", 375, 0.0, 66, 66),
-  createData("KitKat", 518, 26.0, 66, 66),
-  createData("Lollipop", 392, 0.2, 66, 66),
-  createData("Marshmallow", 318, 0, 66, 66),
-  createData("Nougat", 360, 19.0, 66, 66),
-  createData("Oreo", 437, 18.0, 66, 66),
-];
-
+/**
+ * userinfo table, mainly copied from MUI
+ * @returns user list table
+ */
 export default function CustomizedTables() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [page, setPage] = React.useState(0); //control table pagination's page
+  const [rowsPerPage, setRowsPerPage] = React.useState(10); // control table pagiantion's rowsPerPage
+  const [rowsData, setRowsData] = React.useState([]); // save data requested from server
+  const [tipsParam, setTipsParam] = React.useState({
+    open: false,
+    message: "nothing",
+  }); // save parameters for snackbar
+  const { open, message } = tipsParam;
+  const navigate = useNavigate();
 
+  /**
+   * initialed rows data by requesting to server
+   */
+  React.useEffect(() => {
+    getAllUser().then((response) => {
+      if (response.data.status === 1) return navigate("/notauthorized");
+      setRowsData(response.data.rows);
+    });
+  }, []);
+
+  // table pagination, onPageChange Handler
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
+  // table pagination, onRowsPerPageChange Handler
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-              colSpan={3}
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  "aria-label": "rows per page",
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
+  //snackbar onClose Handler
+  const handleClose = () => {
+    setTipsParam({ open: false });
+  };
+
+  // reset button onClick Handler
+  const resetPasswordHandler = (uid) => {
+    return () => {
+      resetPassword(uid).then((response) =>
+        setTipsParam({ open: true, message: response.data.message })
+      );
+    };
+  };
+
+  // Switch onChange Handler
+  const isDelHandler = (uid) => {
+    return (event) => {
+      postStatus({ uid, status: event.target.checked ? 1 : 0 }).then(
+        (response) => {
+          setTipsParam({ open: true, message: response.data.message });
+        }
+      );
+    };
+  };
+
+  //table body, rendering rows' data here
+  const mapRowsData = (begin, end) => {
+    if (isEmpty(rowsData)) return null;
+    return rowsData
+      .slice(begin < 0 ? 0 : begin, end < 0 ? Infinity : end)
+      .map((row) => (
+        <StyledTableRow key={row.uid}>
+          <StyledTableCell component="th" scope="row" width="5%">
+            {row.uid}
+          </StyledTableCell>
+          <StyledTableCell align="right" width="12.5%">
+            {row.username}
+          </StyledTableCell>
+          <StyledTableCell align="right" width="12.5%">
+            <Button color="primary" onClick={resetPasswordHandler(row.uid)}>
+              Reset
+            </Button>
+          </StyledTableCell>
+          <StyledTableCell align="right" width="10%">
+            <Avatar src={row.avatar} alt="avatar" />
+          </StyledTableCell>
+          <StyledTableCell align="right" width="20%">
+            {row.profile}
+          </StyledTableCell>
+          <StyledTableCell align="right" width="30%">
+            {row.created_time}
+          </StyledTableCell>
+          <StyledTableCell align="right" width="10%">
+            <Switch
+              defaultChecked={row.is_delete ? true : false}
+              onChange={isDelHandler(row.uid)}
             />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
+          </StyledTableCell>
+        </StyledTableRow>
+      ));
+  };
+
+  return (
+    <>
+      <TableContainer
+        component={Paper}
+        sx={{
+          minWidth: "60%",
+          maxWidth: "100%",
+          minHeight: "60%",
+          maxHeight: "100%",
+          position: "relative",
+        }}
+      >
+        <Table aria-label="customized table">
+          <TableHead sx={{ position: "sticky", top: 0, zIndex: 999 }}>
+            <TableRow>
+              <StyledTableCell>UID</StyledTableCell>
+              <StyledTableCell align="right">Username</StyledTableCell>
+              <StyledTableCell align="right">
+                Password
+                <Tooltip title="default to 000000">
+                  <QuestionMarkIcon color="white" fontSize="14" />
+                </Tooltip>
+              </StyledTableCell>
+              <StyledTableCell align="right">Avatar</StyledTableCell>
+              <StyledTableCell align="right">Profile</StyledTableCell>
+              <StyledTableCell align="right">Created In</StyledTableCell>
+              <StyledTableCell align="right">IsDel</StyledTableCell>
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {mapRowsData(page * rowsPerPage, (page + 1) * rowsPerPage)}
+          </TableBody>
+
+          <TableFooter
+            sx={{ position: "sticky", bottom: 0, backgroundColor: "#ccc" }}
+          >
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+                colSpan={0}
+                width="100%"
+                count={isEmpty(rowsData) ? 0 : rowsData.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                SelectProps={{
+                  inputProps: {
+                    "aria-label": "rows per page",
+                  },
+                  native: true,
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
+            </TableRow>
+          </TableFooter>
+        </Table>
+      </TableContainer>
+
+      <Snackbar
+        open={open}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        message={message}
+        autoHideDuration={2000}
+        onClose={handleClose}
+      />
+    </>
   );
 }

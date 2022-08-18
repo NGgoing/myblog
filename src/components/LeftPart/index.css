@@ -9,6 +9,7 @@
   min-height: 320px;
   /* min-width: 100px; */
   max-height: 400px;
+  position: relative;
 }
 
 .tabs {
@@ -41,4 +42,11 @@
 
 .border {
   border: 1px solid black;
+}
+
+.fixedOnLeft {
+  position: absolute;
+  top: 0;
+  left: 2%;
+  cursor: pointer;
 }

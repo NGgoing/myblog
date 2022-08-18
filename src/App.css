@@ -41,3 +41,16 @@ body {
     display: none;
   }
 }
+
+/* public css */
+
+/* Hide scrollbar for IE, Edge add Firefox */
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+*::-webkit-scrollbar {
+  display: none;
+}

@@ -45,7 +45,7 @@ export default () => {
       {/* the UserProfile or Login/Register part */}
       <div className="flex7 userprofile">
         {isLogin && isValid ? (
-          <UserProfile userinfo={userinfo} />
+          <UserProfile userinfo={userinfo} setIsLogin={setIsLogin} />
         ) : (
           <LoginRegister
             isLoginHandler={() => setIsLogin(true)}

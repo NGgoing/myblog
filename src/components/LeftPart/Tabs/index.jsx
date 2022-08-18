@@ -45,7 +45,7 @@ export default () => {
         />
         <Tab
           label={
-            <NavLink className="tab" to="management">
+            <NavLink className="tab" to="management/users">
               management
             </NavLink>
           }

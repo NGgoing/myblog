@@ -1,10 +1,24 @@
+import { useNavigate } from "react-router-dom";
 import { Avatar } from "@mui/material";
 import { PersonOutline } from "@mui/icons-material";
+import ReplyAllIcon from "@mui/icons-material/ReplyAll";
 import "./index.css";
 
 export default (props) => {
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    localStorage.removeItem("myToken");
+    props.setIsLogin(false);
+    navigate("/home");
+  };
+
   return (
     <div className="userProfile">
+      {localStorage.getItem("myToken") ? (
+        <ReplyAllIcon className="fixedOnLeft" onClick={logoutHandler} />
+      ) : null}
+
       {/* the avatar part */}
       <div className="avatar">
         <Avatar
