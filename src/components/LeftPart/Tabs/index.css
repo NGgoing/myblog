@@ -11,7 +11,7 @@
 
 /* customize the indicator's shape */
 .tabs div div div + span {
-  width: 50px;
+  width: 150px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -30,6 +30,10 @@
   margin-left: 24px;
 }
 
+.tabs div div div button {
+  padding: 0;
+}
+
 /* change the selected tab's color */
 .Mui-selected {
   color: brown !important;
@@ -45,6 +49,7 @@
   font-size: large;
   line-height: x-large;
   font-family: Times, "Times New Roman", Georgia, serif;
+  margin: 10px 0;
 }
 
 .tab:hover {

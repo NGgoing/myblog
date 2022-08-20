@@ -2,6 +2,8 @@ import { Navigate } from "react-router-dom";
 import Home from "../components/RightPart/Home";
 import Dashboard from "../components/RightPart/Dashboard";
 import Management from "../components/RightPart/Management";
+import Users from "../components/RightPart/Management/Table/Users";
+import Posts from "../components/RightPart/Management/Table/Posts";
 import Extend from "../components/RightPart/Extend";
 import Editor from "../components/RightPart/Editor";
 import Save from "../components/RightPart/Editor/Save";
@@ -25,8 +27,18 @@ export default [
         element: <Dashboard />,
       },
       {
-        path: "management/users",
+        path: "management",
         element: <Management />,
+        children: [
+          {
+            path: "users",
+            element: <Users />,
+          },
+          {
+            path: "posts",
+            element: <Posts />,
+          },
+        ],
       },
       {
         path: "extend",
