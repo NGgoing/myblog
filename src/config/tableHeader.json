@@ -1,0 +1,24 @@
+{
+  "usersHeaders": [
+    "UID",
+    "Username",
+    "Password",
+    "Avatar",
+    "Profile",
+    "Created In",
+    "IsDel"
+  ],
+  "postsHeaders": [
+    "AID",
+    "Title",
+    "Author",
+    "Introduction",
+    "Content",
+    "Cover",
+    "WrittenIn",
+    "IsDel",
+    "Count",
+    "View",
+    "IsPin"
+  ]
+}

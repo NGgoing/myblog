@@ -2,8 +2,7 @@ import { Navigate } from "react-router-dom";
 import Home from "../components/RightPart/Home";
 import Dashboard from "../components/RightPart/Dashboard";
 import Management from "../components/RightPart/Management";
-import Users from "../components/RightPart/Management/Table/Users";
-import Posts from "../components/RightPart/Management/Table/Posts";
+import CustomizedTables from "../components/RightPart/Management/Table";
 import Extend from "../components/RightPart/Extend";
 import Editor from "../components/RightPart/Editor";
 import Save from "../components/RightPart/Editor/Save";
@@ -32,11 +31,11 @@ export default [
         children: [
           {
             path: "users",
-            element: <Users />,
+            element: <CustomizedTables path="users" />,
           },
           {
             path: "posts",
-            element: <Posts />,
+            element: <CustomizedTables path="posts" />,
           },
         ],
       },

@@ -1,5 +1,7 @@
 //package related to react
 import * as React from "react";
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 // MUI
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,18 +11,11 @@ import Snackbar from "@mui/material/Snackbar";
 // my
 import TableFooter from "../Table/TableFooter";
 import TableHeader from "./TableHeader";
-import Users from "./Users";
+import MyTableBody from "./TableBody";
+import { getAllUser, getAllArticle } from "../../../../config/sendRequest";
+import tableHeaders from "../../../../config/tableHeader.json";
 
-// users tab talbe's header
-const usersHeaders = [
-  "UID",
-  "Username",
-  "Password",
-  "Avatar",
-  "Profile",
-  "Created In",
-  "IsDel",
-];
+const { usersHeaders, postsHeaders } = tableHeaders;
 
 /**
  * userinfo table, mainly copied from MUI
@@ -37,6 +32,35 @@ export default function CustomizedTables(props) {
   const { open, message } = tipsParam;
   const begin = page * rowsPerPage; // the start position index of data
   const end = (page + 1) * rowsPerPage; // the end position index of data
+  const navigate = useNavigate();
+  const [header, setHeader] = React.useState([]); // save the parameter passing throught to TableHeader component
+  const [type, setType] = React.useState(props.path);
+  const location = useLocation();
+
+  useEffect(() => {
+    let temp = "";
+    if (location.pathname.indexOf("users") !== -1) temp = "users";
+    if (location.pathname.indexOf("posts") !== -1) temp = "posts";
+
+    switch (temp) {
+      case "users":
+        setHeader(usersHeaders);
+        setType(temp);
+        getAllUser().then((response) => {
+          if (response.data.status === 1) return navigate("/notauthorized");
+          setRowsData(response.data.rows);
+        });
+        break;
+      case "posts":
+        setHeader(postsHeaders);
+        setType(temp);
+        getAllArticle().then((response) => {
+          if (response.data.status === 1) return navigate("/notauthorized");
+          setRowsData(response.data.articles);
+        });
+        break;
+    }
+  }, [props.path]);
 
   // table pagination, onPageChange Handler
   const handleChangePage = (event, newPage) => {
@@ -67,14 +91,15 @@ export default function CustomizedTables(props) {
         }}
       >
         <Table aria-label="customized table">
-          <TableHeader headers={usersHeaders} />
+          <TableHeader headers={header} />
 
           <TableBody>
-            <Users
-              setRowsData={setRowsData}
+            <MyTableBody
+              rowsData={rowsData}
               setTipsParam={setTipsParam}
               begin={begin}
               end={end}
+              type={type}
             />
           </TableBody>
 

@@ -85,17 +85,17 @@ TablePaginationActions.propTypes = {
 };
 
 /**
- * table footer include pagination
+ * Public component
+ * Table footer that needs five parameters:
+ * rows data, rows per page, page, page changed handler, rows per page changed handler
  */
-export default (props) => {
-  const {
-    rowsData,
-    rowsPerPage,
-    page,
-    handleChangePage,
-    handleChangeRowsPerPage,
-  } = props;
-
+export default function MyTableFooter({
+  rowsData,
+  rowsPerPage,
+  page,
+  handleChangePage,
+  handleChangeRowsPerPage,
+}) {
   return (
     <TableFooter
       sx={{ position: "sticky", bottom: 0, backgroundColor: "#ccc" }}
@@ -121,4 +121,13 @@ export default (props) => {
       </TableRow>
     </TableFooter>
   );
+}
+
+// declare the type for each parameter
+MyTableFooter.propTypes = {
+  rowsData: PropTypes.array.isRequired,
+  rowsPerPage: PropTypes.number.isRequired,
+  page: PropTypes.number.isRequired,
+  handleChangePage: PropTypes.func.isRequired,
+  handleChangeRowsPerPage: PropTypes.func.isRequired,
 };

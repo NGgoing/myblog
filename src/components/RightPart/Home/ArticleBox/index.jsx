@@ -37,52 +37,75 @@ export default (props) => {
       {/* img part */}
       <CardMedia component="img" alt="not found" height="140" image={cover} />
 
-      {/* icon part */}
-      <Typography
-        component="div"
-        sx={{
+      <div
+        style={{
+          height: "10%",
+          width: "100%",
           position: "absolute",
-          right: 0,
           top: "40%",
+          backgroundColor: "rgb(0, 0, 0, 0.08)",
+          padding: "2px",
         }}
       >
-        {/* Pin icon */}
-        {is_pin === 1 && (
+        {/* icon part */}
+        <Typography
+          component="div"
+          sx={{
+            position: "absolute",
+            left: 10,
+          }}
+        >
+          {/* Pin icon */}
+          {is_pin === 1 && (
+            <Tooltip
+              title="Pined"
+              sx={{
+                mr: 1,
+                color: "white",
+                boxShadow: "0px 0px 3px rgb(0, 0, 0, 0.2)",
+              }}
+            >
+              <PushPinIcon />
+            </Tooltip>
+          )}
+
+          {/* view icon */}
           <Tooltip
-            title="Pined"
+            title={`${view} views`}
             sx={{
               mr: 1,
-              color: "rgba(180, 180, 180, 0.8)",
+              color: "white",
+              boxShadow: "0px 0px 4px rgb(0, 0, 0, 0.2)",
             }}
           >
-            <PushPinIcon />
+            <VisibilityIcon />
           </Tooltip>
-        )}
 
-        {/* view icon */}
-        <Tooltip
-          title={`${view} views`}
-          sx={{ mr: 1, color: "rgba(180, 180, 180, 0.8)" }}
-        >
-          <VisibilityIcon />
-        </Tooltip>
+          {/* count icon */}
+          <Tooltip
+            title={`${count} words`}
+            sx={{
+              mr: 1,
+              color: "white",
+              boxShadow: "0px 0px 4px rgb(0, 0, 0, 0.2)",
+            }}
+          >
+            <FunctionsIcon />
+          </Tooltip>
 
-        {/* count icon */}
-        <Tooltip
-          title={`${count} words`}
-          sx={{ mr: 1, color: "rgba(180, 180, 180, 0.8)" }}
-        >
-          <FunctionsIcon />
-        </Tooltip>
-
-        {/* spendTime icon */}
-        <Tooltip
-          title={`${calcToMins(count)}`}
-          sx={{ mr: 1, color: "rgba(180, 180, 180, 0.8)" }}
-        >
-          <AccessTimeIcon />
-        </Tooltip>
-      </Typography>
+          {/* spendTime icon */}
+          <Tooltip
+            title={`${calcToMins(count)}`}
+            sx={{
+              mr: 1,
+              color: "white",
+              boxShadow: "0px 0px 4px rgb(0, 0, 0, 0.2)",
+            }}
+          >
+            <AccessTimeIcon />
+          </Tooltip>
+        </Typography>
+      </div>
 
       <CardContent>
         {/* title */}

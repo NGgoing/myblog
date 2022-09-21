@@ -1,9 +1,10 @@
+// package related react
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+// third-party package
 import { marked } from "marked";
-import { getSeletedArticle } from "../../../config/sendRequest";
-import calcToMins from "../../../utils/calcToMins";
-import MySkeleton from "../../public/MySkeleton";
+import "github-markdown-css";
+// MUI
 import PersonIcon from "@mui/icons-material/Person";
 import FunctionsIcon from "@mui/icons-material/Functions";
 import PushPinIcon from "@mui/icons-material/PushPin";
@@ -11,7 +12,11 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import ChromeReaderModeIcon from "@mui/icons-material/ChromeReaderMode";
 import EditIcon from "@mui/icons-material/Edit";
-import "github-markdown-css";
+// My
+import { getSeletedArticle } from "../../../config/sendRequest";
+import calcToMins from "../../../utils/calcToMins";
+import MySkeleton from "../../public/MySkeleton";
+import TableOfContents from "./TableOfContents";
 import "./index.css";
 
 /**
@@ -34,9 +39,11 @@ export default (props) => {
   }, []);
 
   return (
-    <div className="markdown-body">
-      {
-        loading ? (
+    <div>
+      {/* need an outline -- unsolve */}
+      {loading ? null : <TableOfContents />}
+      <div className="markdown-body">
+        {loading ? (
           <MySkeleton />
         ) : (
           <div>
@@ -81,9 +88,8 @@ export default (props) => {
               style={{ padding: "40px" }}
             ></div>
           </div>
-        )
-        //  need an outline -- unsolve
-      }
+        )}
+      </div>
     </div>
   );
 };

@@ -1,10 +1,13 @@
+// react
+import { Outlet } from "react-router-dom";
+// MUI
 import { Grid } from "@mui/material";
+// My
 import CenteredTabs from "./Tabs";
-import CustomizedTables from "./Table";
 import "./index.css";
 
 /**
- * This component includes two part, article and user management
+ * This component includes two part, user and article management
  */
 export default () => {
   return (
@@ -13,7 +16,7 @@ export default () => {
         <CenteredTabs />
       </Grid>
       <Grid item xs={11} className="management-body">
-        <CustomizedTables />
+        <Outlet />
       </Grid>
     </Grid>
   );

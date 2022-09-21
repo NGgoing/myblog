@@ -29,7 +29,7 @@ export default () => {
   };
 
   return (
-    <Grid container direction="column" className="border rightpartContainer">
+    <Grid container direction="column" className="rightpartContainer">
       {/* the search part */}
       <Grid item xs={1} className="search">
         <Search />
